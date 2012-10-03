@@ -19,7 +19,7 @@
 class hiera::params (
   $package             = undef,
   $hiera_yaml_content  = undef,
-  $hiera_yaml_template = undef,
+  $hiera_yaml_template = 'hiera/hiera.yaml.erb',
   $hiera_yaml_source   = undef,
   $backends            = ['yaml', 'puppet'],
   $logger              = 'console',
