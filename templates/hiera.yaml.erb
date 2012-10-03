@@ -1,14 +1,40 @@
----
 <%
-def print_yaml_array(field, values)
+def print_yaml_array(field, values, prefix = "")
+  field_str = "#{prefix}:#{field}:"
+  prefix_str = " " * (field_str.size)
+
+  values = [ values ] unless values.is_a?(Array)
+
+  if values.size == 1 then
+    return "#{field_str} #{values[0]}"
+  end
+
+  first = true
+  result = ""
+  values.each do |val|
+    if first
+      first = false
+      result += "#{field_str} - #{val}\n"
+    else
+      result += "#{prefix_str} - #{val}\n"
+    end
+  end
+  result
 end
 -%>
+---
+### File managed with puppet ###
+## Served by:        '<%= scope.lookupvar('::servername') %>'
+## Module:           '<%= scope.to_hash['module_name'] %>'
+## Template source:  '<%= template_source %>'
 <%= print_yaml_array "backends", scope.lookupvar("hiera::params::backends") %>
 
 <%= print_yaml_array "logger", scope.lookupvar("hiera::params::logger") %>
 
 <%= print_yaml_array "hierarchy", scope.lookupvar("hiera::params::hierarchy") %>
 
-<%= print_yaml_array "datadir", scope.lookupvar("hiera::params::datadir") %>
+:yaml:
+<%= print_yaml_array "datadir", scope.lookupvar("hiera::params::datadir"), " " %>
 
-<%= print_yaml_array "datasource", scope.lookupvar("hiera::params::datasource") %>
+:puppet:
+<%= print_yaml_array "datasource", scope.lookupvar("hiera::params::datasource"), " " %>
