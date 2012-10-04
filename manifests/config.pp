@@ -19,17 +19,21 @@ class hiera::config {
     ensure => 'directory',
   }
 
-  file {'/etc/puppet/hiera.yaml':
-    ensure  => 'present',
-  }
+  if $hiera::params::manage_config == true {
 
-  if $hiera::params::hierayaml_content == false {
-    File['/etc/puppet/hiera.yaml'] {
-      source => $hiera::params::hierayaml_source,
+    file {'/etc/puppet/hiera.yaml':
+      ensure  => 'present',
     }
-  } elsif $hiera::params::hierayaml_content != '' {
-    File['/etc/puppet/hiera.yaml'] {
-      content => $hiera::params::hierayaml_content,
+
+    if $hiera::params::hierayaml_content == false {
+      File['/etc/puppet/hiera.yaml'] {
+        source => $hiera::params::hierayaml_source,
+      }
+    }
+    elsif $hiera::params::hierayaml_content != '' {
+      File['/etc/puppet/hiera.yaml'] {
+        content => $hiera::params::hierayaml_content,
+      }
     }
   }
 
