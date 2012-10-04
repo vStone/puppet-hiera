@@ -25,7 +25,8 @@ class hiera::params (
   $logger              = 'console',
   $hierarchy           = ['%{environment}', '%{domain}', '%{hostname}', 'common' ],
   $datadir             = '/etc/puppet/hieradata',
-  $datasource          = 'data'
+  $datasource          = 'data',
+  $manage_config       = true
 ){
   ## Copy paste snippets:
   # template("${module_name}/template.erb")
