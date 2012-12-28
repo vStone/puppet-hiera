@@ -1,18 +1,41 @@
-require 'pathname'
-dir = Pathname.new(__FILE__).parent
-$LOAD_PATH.unshift(dir, dir + 'lib', dir + '../lib')
-
+require 'rubygems'
 require 'mocha'
-require 'puppet'
-gem 'rspec', '=1.2.9'
-require 'spec/autorun'
 
-Spec::Runner.configure do |config|
-    config.mock_with :mocha
+require 'rspec-puppet'
+require 'puppetlabs_spec_helper/module_spec_helper'
+
+# Allows setting the config to use manually before using any hiera functions.
+require 'hiera_puppet'
+require 'hiera_puppet_helper'
+
+# Use diff_matcher for comparing hashes
+require 'diff_matcher_helper'
+
+# Fixture path.
+fixture_path = File.expand_path(File.join(__FILE__, '..', 'fixtures'))
+
+# Configure hiera and setup the puppet scope.
+shared_context 'hieradata' do
+  let(:scope) {
+    HieraPuppet.extend(HieraHelper)
+    hiera = HieraPuppet.use_config({
+      :backends => ['rspec', 'yaml'],
+      :logger   => 'puppet',
+      :hierarchy => [
+        'top',
+        'bottom',
+        'resources',
+        'common',
+      ],
+      :yaml => { :datadir => File.join(fixture_path, 'hieradata'), },
+      :rspec => respond_to?(:hiera_data) ? hiera_data : {}
+    })
+    PuppetlabsSpec::PuppetInternals.scope
+  }
 end
 
-# We need this because the RAL uses 'should' as a method.  This
-# allows us the same behaviour but with a different method name.
-class Object
-    alias :must :should
+RSpec.configure do |c|
+  c.module_path = File.join(fixture_path, 'modules')
+  c.manifest_dir = File.join(fixture_path, 'manifests')
+  c.mock_with :mocha
 end
