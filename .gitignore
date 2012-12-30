@@ -1,0 +1,8 @@
+## Ignore bundler
+.bundle
+
+# bundle install --path .vendor
+.vendor/
+
+# bundle install --path vendor
+vendor/
