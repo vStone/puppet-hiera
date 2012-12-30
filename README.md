@@ -42,6 +42,20 @@ requests.
 * Keep track of upstream releases. Upgrade too.
 * Todo: Add an example on how one could use this module. reference hiera documentation.
 
+### Tests
+
+To run the rspec tests, you will need bundler.
+
+    bundle install
+    bundle exec rake
+
+A patched version of rspec-hiera-puppet has been used to add support for new hiera versions.
+You can find it [here](https://github.com/UnifiedPost/rspec-hiera-puppet)
+
+We only use the rspec backend it provides. We can not use anything else since we are actually
+testing the functions that it mocks.
+
+
 ### Changes
 
 #### 1.0.0
