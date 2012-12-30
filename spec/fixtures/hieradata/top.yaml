@@ -1,0 +1,9 @@
+---
+singlekey: top
+
+arraykey: - one
+          - two
+
+hashkey:
+  one: foobar
+  two: foobar
