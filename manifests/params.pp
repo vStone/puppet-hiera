@@ -34,7 +34,7 @@ class hiera::params (
 
   $packages = $package ? {
     undef   => $::operatingsystem ? {
-      default => ['rubygem-hiera', 'rubygem-hiera-puppet']
+      default => ['hiera']
     },
     default => $package,
   }
