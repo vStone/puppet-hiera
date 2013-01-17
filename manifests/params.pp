@@ -21,7 +21,7 @@ class hiera::params (
   $hiera_yaml_content  = undef,
   $hiera_yaml_template = 'hiera/hiera.yaml.erb',
   $hiera_yaml_source   = undef,
-  $backends            = ['yaml', 'puppet'],
+  $backends            = ['yaml'],
   $logger              = 'console',
   $hierarchy           = ['%{environment}', '%{domain}', '%{hostname}', 'common' ],
   $datadir             = '/etc/puppet/hieradata',
