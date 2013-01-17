@@ -4,7 +4,7 @@
 #
 # == Parameters:
 #
-# $package::    Override packages to be installed.
+# See the main hiera class for all parameters that can be used.
 #
 # == Sample Usage:
 #
@@ -39,20 +39,4 @@ class hiera::params (
     default => $package,
   }
 
-  if $hiera_yaml_content != undef {
-    $hierayaml_content = $hiera_yaml_content
-  }
-  elsif $hiera_yaml_template != undef {
-    $hierayaml_content = template($hiera_yaml_template)
-  }
-  elsif $hiera_yaml_source != undef {
-    $hierayaml_source = $hiera_yaml_source
-    $hierayaml_content = false
-  }
-  else {
-    $hierayaml_content = ''
-  }
-
-
 }
-

@@ -14,11 +14,11 @@
 #
 #   include hiera::packages
 #
-class hiera::packages {
+class hiera::packages (
+  $package = $::hiera::package
+) inherits hiera {
 
-  require hiera::params
-
-  package {$hiera::params::packages:
+  package {$package:
     ensure => 'installed',
   }
 
