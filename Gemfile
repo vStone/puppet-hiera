@@ -3,7 +3,8 @@ source :rubygems
 gem 'rake'
 gem 'puppet-lint', '>=0.2.0'
 gem 'rspec', '>2'
-gem 'rspec-puppet', '>=0.1.3'
+gem 'rspec-puppet', :path => '/home/jan/SRC/rspec-puppet'
+#gem 'rspec-puppet', '>=0.1.3'
 
 # Used in our spec tests for comparing hashes.
 gem 'diff_matcher'

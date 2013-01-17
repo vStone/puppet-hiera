@@ -1,17 +1,14 @@
 require 'spec_helper'
 
-
-describe 'hiera' do
+describe 'hiera', :type => :class  do
 
   describe 'with default parameters' do
-    it do
-      should include_class('hiera::packages')
-      should include_class('hiera::config')
-      should contain_package('rubygem-hiera')
-      should contain_package('rubygem-hiera-puppet')
-      should contain_file('/etc/puppet/hieradata').with_ensure('directory')
-      should contain_file('/etc/puppet/hiera.yaml')
-    end
+    it { should include_class('hiera::packages') }
+    it { should include_class('hiera::config') }
+    it { should contain_package('rubygem-hiera') }
+    it { should contain_package('rubygem-hiera-puppet') }
+    it { should contain_file('/etc/puppet/hieradata').with_ensure('directory') }
+    it { should contain_file('/etc/puppet/hiera.yaml') }
   end
 
 end

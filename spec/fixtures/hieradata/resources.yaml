@@ -1,0 +1,23 @@
+---
+classes_only: - foo
+              - bar
+
+classes_as_array: - foo
+                  - foo::def
+                  - bar
+
+classes_as_hash:
+  foo:
+  foo::def:
+
+classes_as_array_params:
+  - foo:
+      param: customm
+  - foo::def:
+      param: custom
+
+classes_as_array_hash:
+  foo:
+    param: custom
+  foo::def:
+    param: custom

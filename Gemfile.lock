@@ -1,0 +1,63 @@
+GIT
+  remote: git@github.com:UnifiedPost/rspec-hiera-puppet.git
+  revision: 037090c2aa07fed9cc5802390a2c3b3288611491
+  specs:
+    rspec-hiera-puppet (0.3.0)
+      hiera (>= 0.3)
+      hiera-puppet (>= 0.3)
+      puppet (>= 2.7)
+      rspec
+      rspec-puppet
+
+PATH
+  remote: /home/jan/SRC/rspec-puppet
+  specs:
+    rspec-puppet (0.1.5)
+      rspec
+
+GEM
+  remote: http://rubygems.org/
+  specs:
+    diff-lcs (1.1.3)
+    diff_matcher (2.4.0)
+    facter (1.6.17)
+    hiera (1.1.2)
+      json_pure
+    hiera-puppet (1.0.0)
+      hiera (~> 1.0)
+    json_pure (1.7.6)
+    metaclass (0.0.1)
+    mocha (0.13.1)
+      metaclass (~> 0.0.1)
+    puppet (2.7.20)
+      facter (~> 1.5)
+    puppet-lint (0.3.2)
+    puppetlabs_spec_helper (0.4.0)
+      mocha (>= 0.10.5)
+      rake
+      rspec (>= 2.9.0)
+      rspec-puppet (>= 0.1.1)
+    rake (10.0.3)
+    rspec (2.12.0)
+      rspec-core (~> 2.12.0)
+      rspec-expectations (~> 2.12.0)
+      rspec-mocks (~> 2.12.0)
+    rspec-core (2.12.2)
+    rspec-expectations (2.12.1)
+      diff-lcs (~> 1.1.3)
+    rspec-mocks (2.12.1)
+
+PLATFORMS
+  ruby
+
+DEPENDENCIES
+  diff_matcher
+  hiera (~> 1)
+  hiera-puppet (~> 1)
+  puppet (~> 2.7)
+  puppet-lint (>= 0.2.0)
+  puppetlabs_spec_helper (>= 0.2.0)
+  rake
+  rspec (> 2)
+  rspec-hiera-puppet!
+  rspec-puppet!

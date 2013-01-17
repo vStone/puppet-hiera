@@ -14,28 +14,23 @@ require 'diff_matcher_helper'
 # Fixture path.
 fixture_path = File.expand_path(File.join(__FILE__, '..', 'fixtures'))
 
-# Configure hiera and setup the puppet scope.
-shared_context 'hieradata' do
-  let(:scope) {
-    HieraPuppet.extend(HieraHelper)
-    hiera = HieraPuppet.use_config({
-      :backends => ['rspec', 'yaml'],
-      :logger   => 'puppet',
-      :hierarchy => [
-        'top',
-        'bottom',
-        'resources',
-        'common',
-      ],
-      :yaml => { :datadir => File.join(fixture_path, 'hieradata'), },
-      :rspec => respond_to?(:hiera_data) ? hiera_data : {}
-    })
-    PuppetlabsSpec::PuppetInternals.scope
-  }
-end
-
 RSpec.configure do |c|
   c.module_path = File.join(fixture_path, 'modules')
   c.manifest_dir = File.join(fixture_path, 'manifests')
   c.mock_with :mocha
+end
+
+# Configure hiera and setup the puppet scope.
+shared_context 'hieradata' do
+  before :each do
+    HieraPuppet.extend(HieraHelper)
+    HieraPuppet.use_config({
+      :backends => ['yaml'],
+      :hierarchy => ['top','resources','common','bottom'],
+      :yaml => { :datadir => File.join(fixture_path, 'hieradata') }
+    })
+  end
+  let(:scope) {
+    PuppetlabsSpec::PuppetInternals.scope
+  }
 end
